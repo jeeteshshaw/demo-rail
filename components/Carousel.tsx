@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+// @ts-ignore
 import Carousel from 'react-native-snap-carousel';
-import {View,Dimensions,StyleSheet,Image} from 'react-native';
+import {View,Dimensions,StyleSheet,Image, TouchableOpacity, Linking} from 'react-native';
 
 const ENTRIES1 = [
   {
@@ -37,7 +38,9 @@ const MyCarousel =()=> {
 
   const renderItem =()=> {
     return (
-        <Image source={require('../assets/8.jpeg')}  style={styles.image}/>
+      <TouchableOpacity onPress={()=> Linking.openURL("https://www.oyorooms.com/")}>
+        <Image source={require('../assets/250.png')}  style={styles.image}/>
+      </TouchableOpacity>
     );
   };
 
