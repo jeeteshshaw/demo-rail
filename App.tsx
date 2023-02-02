@@ -9,6 +9,7 @@ import React, { FC } from 'react';
 import type { PropsWithChildren } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
+
 import { NavigationContainer, useTheme, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -16,11 +17,21 @@ import { FlatList } from 'react-native';
 import { OptionList } from './Static/data';
 import { TouchableHighlight } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
+import MyCarousel from './components/Carousel';
+const {width: screenWidth} = Dimensions.get('window');
+
 function HomeScreen() {
   const { colors } = useTheme()
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={styles.item}>
+        <View style={{marginVertical:10}}>
+        <Text style={{fontSize:20,fontWeight:'bold',color:'#000'}}>Offers</Text>
+        </View>
+      <MyCarousel/>
+      </View>
+
       <View style={{ backgroundColor: colors.card, paddingVertical: 16 }}>
 
         <FlatList
@@ -102,4 +113,9 @@ const App: FC = () => {
 
 export default App
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  item:{width: screenWidth,
+  height: 175,
+  backgroundColor:'#ffe6cc',
+  justifyContent:'center',}
+})
