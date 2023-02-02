@@ -8,7 +8,6 @@ import { Button } from 'react-native-paper';
 const Home = () => {
     const { colors } = useTheme()
   return (
-      
           <View style={{ flex: 1, }}>
             <View style={{ backgroundColor: colors.card, paddingVertical: 16, flex:1, alignItems:"center" }}>
               <View style={{backgroundColor:"#fff", width:"90%", elevation:10, borderRadius:20,padding:20}}>
