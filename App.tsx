@@ -9,6 +9,7 @@ import React, { FC, useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
+
 import { NavigationContainer, useTheme, DarkTheme, DefaultTheme } from '@react-navigation/native';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -63,4 +64,3 @@ const App: FC = () => {
 
 export default App
 
-const styles = StyleSheet.create({})

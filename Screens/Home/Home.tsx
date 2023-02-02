@@ -4,7 +4,9 @@ import { NavigationContainer, useTheme, DarkTheme, DefaultTheme } from '@react-n
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { OptionList } from '../../Static/data';
 import { Button } from 'react-native-paper';
+import MyCarousel from '../../components/Carousel';
 
+const screenWidth = Dimensions.get('screen').width
 const Home = () => {
     const { colors } = useTheme()
   return (
@@ -53,7 +55,12 @@ const Home = () => {
 
 
               </View>
-           
+              <View style={styles.item}>
+        <View style={{marginVertical:20}}>
+        <Text style={{fontSize:20,fontWeight:'bold',color:'#000',paddingHorizontal:16}}>Offers</Text>
+        </View>
+      <MyCarousel/>
+      </View>
             </View>
           </View>
       
@@ -65,8 +72,13 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({})
-
+const styles = StyleSheet.create({
+  item:{width: screenWidth,
+  height: 175,
+  backgroundColor:'#ffe6cc',
+  justifyContent:'center',
+marginTop:20}
+})
 export function SettingsScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
