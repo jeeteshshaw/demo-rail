@@ -51,6 +51,7 @@ const MyCarousel =()=> {
         renderItem={renderItem}
         autoplay={true}
         layout={'default'}
+        loop={true}
       />
     </View>
   );

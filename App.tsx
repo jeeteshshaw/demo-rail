@@ -5,117 +5,62 @@
  * @format
  */
 
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 
 import { NavigationContainer, useTheme, DarkTheme, DefaultTheme } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { FlatList } from 'react-native';
 import { OptionList } from './Static/data';
 import { TouchableHighlight } from 'react-native';
 import SplashScreen from 'react-native-splash-screen'
-import MyCarousel from './components/Carousel';
-const {width: screenWidth} = Dimensions.get('window');
+import BottomTab from './navigation/BottomTab';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function HomeScreen() {
-  const { colors } = useTheme()
-
-  return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <View style={styles.item}>
-        <View style={{marginVertical:10}}>
-        <Text style={{fontSize:20,fontWeight:'bold',color:'#000'}}>Offers</Text>
-        </View>
-      <MyCarousel/>
-      </View>
-
-      <View style={{ backgroundColor: colors.card, paddingVertical: 16 }}>
-
-        <FlatList
-          data={OptionList}
-          numColumns={3}
-          ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-          renderItem={({ item, index }) => (
-            <View style={{ width: (Dimensions.get("screen").width / 3), alignItems: "center" }}>
-              <TouchableOpacity onPress={() => { }}>
-                <View style={{ padding: 10, backgroundColor: "#0275d8", elevation: 2, borderRadius: 30 }}>
-                  <Ionicons name={item.icon} size={24} color={"#fff"} />
-
-                </View>
-              </TouchableOpacity>
-              <Text style={{ fontSize: 12, color: colors.text, marginTop: 4 }}>{item.title}</Text>
-            </View>
-          )}
-        />
-      </View>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Setting !</Text>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-
+const Stack = createNativeStackNavigator();
 
 const App: FC = () => {
- SplashScreen.hide();
+  const [ShowSplashScreen, setShowSplashScreen] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+      
+    }, 3000);  
+  
+  }, [])
+  
   return (
-    <NavigationContainer theme={DefaultTheme}>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarStyle: {
-            paddingBottom: 10,
-            height: 60
-          },
-          header: () => (
-            <View style={{ height: 60, backgroundColor: "#fff", justifyContent:"center", paddingHorizontal:16, elevation:10 }}>
-                <Text style={{color:DefaultTheme.colors.text, fontSize:22}}>Train Man Demo</Text>
+    <NavigationContainer theme={{
+      ...DefaultTheme,
+      colors:{
+        background:"#fff",
+        border:"#747474",
+        card:"#FFF",
+        text:"#000",
+        primary:DefaultTheme.colors.primary,
+        notification:DarkTheme.colors.notification
+      }
+    }}>
+       <Stack.Navigator>
+        <Stack.Screen name="BottomTab" component={BottomTab} 
+        options={{
+          header:()=>(
+            <View style={{ height: 75, backgroundColor: "#fff", flexDirection:"row", alignItems:"center", justifyContent:"space-between", paddingHorizontal:16, elevation:10, borderBottomRightRadius:20, borderBottomLeftRadius:20, borderColor:"#fff" }}>
+              <Text style={{color:DefaultTheme.colors.primary, fontSize:20}}><Ionicons name="person" size={24} color={"#F67325"}/> Trainman Demo</Text>
+              <Text style={{color:"#F67325", fontSize:16, borderWidth:1, borderRadius:10, padding:5, paddingHorizontal:15, borderColor:"#F67325"}}>PNR</Text>
             </View>
-          ),
-
-          tabBarActiveTintColor: '#0275d8',
-          tabBarInactiveTintColor: 'gray',
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name={"home"} size={size} color={color} />
           )
-        }} />
-        <Tab.Screen name="Profile" component={SettingsScreen} options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name={"person"} size={size} color={color} />
-          )
-        }} />
-        <Tab.Screen name="Search" component={SettingsScreen} options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name={"search"} size={size} color={color} />
-          )
-        }} />
-        <Tab.Screen name="Settings" component={SettingsScreen} options={{
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name={"settings"} size={size} color={color} />
-          )
-        }} />
-      </Tab.Navigator>
+        }}
+        />
+      </Stack.Navigator>
+    
     </NavigationContainer>
   )
 }
 
 export default App
 
-const styles = StyleSheet.create({
-  item:{width: screenWidth,
-  height: 175,
-  backgroundColor:'#ffe6cc',
-  justifyContent:'center',}
-})
