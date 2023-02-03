@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home, { SettingsScreen } from '../Screens/Home/Home';
 // import { useTheme } from 'react-native-paper';
 import {  useTheme } from '@react-navigation/native';
+import Notification from '../Screens/Notification/Notification';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -54,7 +55,7 @@ const BottomTab = () => {
     />
     <Tab.Screen
       name="Notifications"
-      component={SettingsScreen}
+      component={Notification}
       
       options={{
         tabBarLabel: 'Notifications',
