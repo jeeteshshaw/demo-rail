@@ -6,8 +6,10 @@ import Home, { SettingsScreen } from '../Screens/Home/Home';
 // import { useTheme } from 'react-native-paper';
 import {  useTheme } from '@react-navigation/native';
 import Notification from '../Screens/Notification/Notification';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Tab = createMaterialBottomTabNavigator();
+// const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const BottomTab = () => {
   // useState
@@ -16,28 +18,31 @@ const BottomTab = () => {
     <Tab.Navigator
     initialRouteName="Feed"
     
-    activeColor={"#F67325"}
-    shifting={true}
+    // activeColor={"#F67325"}
+    // shifting={true}
     // sceneAnimationType='opacity'
     // sceneAnimationEnabled={true}
     // sceneAnimationEasing={Easing.bounce}
-    inactiveColor="#cccccc"
+    // inactiveColor="#cccccc"
    
     screenOptions={{
       // tabBarBadge:10,
       tabBarLabel:"#F67325",
-      tabBarColor:"#F67325",
-      
+      // tabBarColor:"#F67325",
+      tabBarActiveTintColor:"#F67325",
+      tabBarLabelStyle:{fontWeight:"700", fontSize:12},
+      tabBarStyle:{
+        height:55,
+        borderTopWidth:1, 
+        borderTopColor:"#F67325", 
+      },
+      headerShown:false
     }}
-    style={{
-      // borderTopLeftRadius:20,
-      // borderTopRightRadius:20
-      // paddingTop:20, 
-    }}
-    labeled={true}
-    sceneAnimationEasing={Easing.linear}
+   
+    // labeled={true}
+    // sceneAnimationEasing={Easing.linear}
     // screenListeners={{focus:({target})=>console.log(target)}}
-    barStyle={{ backgroundColor: "#fff", borderTopWidth:1, borderColor:"#F67325", height:70  }}
+    // barStyle={{ backgroundColor: "#fff", borderTopWidth:1, borderColor:"#F67325",  }}
   >
     <Tab.Screen
       name="Feed"
@@ -47,7 +52,7 @@ const BottomTab = () => {
         
         tabBarLabel: 'Home',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={color} size={26} />
+          <MaterialCommunityIcons name="home" color={color} size={30} />
         ),
         
       }}

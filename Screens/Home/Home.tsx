@@ -6,6 +6,9 @@ import { OptionList } from '../../Static/data';
 import { Button } from 'react-native-paper';
 import MyCarousel from '../../components/Carousel';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import Sponsored from '../../components/Sponsored';
+import SponseredPartner from '../../components/SponsPart';
+import { ScrollView } from 'react-native';
 
 const screenWidth = Dimensions.get('screen').width
 const Home = () => {
@@ -26,6 +29,7 @@ const Home = () => {
   };
   return (
     <View style={{ flex: 1, }}>
+      <ScrollView>
       <View style={{ backgroundColor: colors.card, paddingVertical: 16, flex: 1, alignItems: "center" }}>
         <View style={{ backgroundColor: "#fff", width: "90%", elevation: 10, borderRadius: 20, padding: 20 }}>
           <View style={{}}>
@@ -77,22 +81,38 @@ const Home = () => {
                 Search Trains
               </Button>
             </View>
-          </View>
 
 
-        </View>
-        <View style={styles.item}>
-          <View style={{ marginVertical: 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#000', paddingHorizontal: 16 }}>Offers</Text>
           </View>
-          <MyCarousel />
+          </View>
+          <View style={styles.item}>
+            <View style={{ marginVertical: 20 }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#000', paddingHorizontal: 16 }}>Offers</Text>
+            </View>
+            <MyCarousel />
+
         </View>
+        <View style={{ justifyContent: 'center', marginTop:16 }}>
+          <Text style={{ fontSize: 20, color: '#000', fontWeight: 'bold' }}>Sponsored  Ads</Text>
+          <Sponsored />
+        </View>
+
+        <View style={{
+          width: screenWidth,
+          height: 250,
+          justifyContent: 'center',
+          marginTop: 20
+        }}>
+          <View style={{ marginVertical: 10 }}>
+            <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#000', paddingHorizontal: 16 }}>Sponsored Partner</Text>
+          </View>
+          <SponseredPartner />
+        </View>
+
+
       </View>
+      </ScrollView>
     </View>
-
-
-
-
   )
 }
 
