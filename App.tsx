@@ -7,7 +7,7 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 
 
 import { NavigationContainer, useTheme, DarkTheme, DefaultTheme } from '@react-navigation/native';
@@ -29,7 +29,7 @@ const App: FC = () => {
     setTimeout(() => {
       SplashScreen.hide();
       
-    }, 3000);  
+    }, 2000);  
   
   }, [])
   
@@ -50,7 +50,10 @@ const App: FC = () => {
         options={{
           header:()=>(
             <View style={{ height: 75, backgroundColor: "#fff", flexDirection:"row", alignItems:"center", justifyContent:"space-between", paddingHorizontal:16, elevation:10, borderBottomRightRadius:20, borderBottomLeftRadius:20, borderColor:"#fff" }}>
-              <Text style={{color:DefaultTheme.colors.primary, fontSize:20}}><Ionicons name="person" size={24} color={"#F67325"}/> Trainman Demo</Text>
+              <View style={{flexDirection:"row", alignItems:"center"}}>
+              <Image source={require("./assets/logo_fako.png")}  style={{width:50, height:50, resizeMode:"contain"}} />
+              <Text style={{color:DefaultTheme.colors.primary, fontSize:20}}> Trainman Demo</Text>
+              </View>
               <TouchableOpacity ><Text style={{color:"#F67325", fontSize:16, borderWidth:1, borderRadius:10, padding:5, paddingHorizontal:15, borderColor:"#F67325"}}>PNR</Text></TouchableOpacity>
             </View>
           )

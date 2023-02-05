@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 // @ts-ignore
 import Carousel from 'react-native-snap-carousel';
 import {View,Dimensions,StyleSheet,Image, TouchableOpacity, Linking} from 'react-native';
-
+import { Text } from 'react-native';
 const ENTRIES1 = [
   {
     title: 'Beautiful and dramatic Antelope Canyon',
@@ -15,7 +15,6 @@ const ENTRIES1 = [
     subtitle: 'Lorem ipsum dolor sit amet',
     illustration: require('../assets/zomato_offer.png'),
     url:"https://www.zomato.com/"
-
   },
   {
     title: 'White Pocket Sunset',
@@ -23,7 +22,6 @@ const ENTRIES1 = [
     // illustration: '../assets/1.jpg',
     illustration: require('../assets/flipkart_offer.jpg'),
     url:"https://www.flipkart.com/"
-
 
   },
   {
@@ -40,17 +38,22 @@ const ENTRIES1 = [
     url:"https://www.zomato.com/"
   },
 ];
+
 const {width: screenWidth} = Dimensions.get('window');
 
-const MyCarousel =()=> {
+const SponseredPartner =()=> {
   const [entries, setEntries] = useState(ENTRIES1);
 
-  const renderItem =({item, index})=> {
-    
-    // console.log({item})
+  const renderItem =({item,index})=> {
     return (
-      <TouchableOpacity style={styles.image} onPress={()=> Linking.openURL(item.url)}>
-        <Image source={item.illustration}  style={[,{resizeMode:"stretch", width:"100%", height:"100%", borderRadius:20}]}/>
+      <TouchableOpacity onPress={()=> Linking.openURL(item.url)} style={{backgroundColor:'white',borderWidth:1,width:screenWidth-40,height:200, borderRadius:20,alignSelf:'center',elevation:5,borderColor:'#fff'}}>
+        <Image source={item.illustration}  style={[styles.image,{
+        resizeMode: 'stretch',
+
+        }]}/>
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+            <Text style={{fontSize:20,color:'orange'}}>BOOK NOW</Text>
+        </View>
       </TouchableOpacity>
     );
   };
@@ -71,7 +74,7 @@ const MyCarousel =()=> {
   );
 };
 
-export default MyCarousel;
+export default SponseredPartner;
 
 const styles = StyleSheet.create({
   container: {
@@ -90,10 +93,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   image: {
-    height:'90%',
-    width:'80%',
+    height:'80%',
+    width:'100%',
     alignSelf:'center',
-    // resizeMode:"s",
-    borderRadius:10
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
   },
 });
